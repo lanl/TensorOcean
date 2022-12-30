@@ -14,8 +14,8 @@
 
 int main(int argc, char ** argv)
 {
-  int NL;      // square mesh length and width, must be positive and even
-  int ND;      // mesh depth, must be >=5
+  int NC;      // square mesh length and width, must be positive and even
+  int NL;      // mesh depth levels, must be >=5
   int NT;      // # of trcers, must be psitive
 
   char filename[20] = "";
@@ -25,24 +25,24 @@ int main(int argc, char ** argv)
      return 1;
   }
   else {
-    NL = atoi(argv[1]);
-    ND = atoi(argv[2]);
+    NC = atoi(argv[1]);
+    NL = atoi(argv[2]);
     NT = atoi(argv[3]);
   }
 
-  if (NL <= 0) {
+  if (NC <= 0) {
     printf("Mesh length must be positive\n");
     return 1;
   }
-  if (NL%2 != 0) {
+  if (NC%2 != 0) {
     printf("Mesh length must be even\n");
     return 1;
   }
-  if (ND < 5) {
+  if (NL < 5) {
     printf("Mesh depth must be >= 5\n");
     return 1;
   }
-  if (NL <= 0) {
+  if (NT <= 0) {
     printf("Number of tracers must be positive\n");
     return 1;
   }
@@ -55,27 +55,27 @@ int main(int argc, char ** argv)
   strcat(filename, "_");
   strcat(filename, argv[3]);
   strcat(filename, ".dat");
-  printf("Generating a %d x %d x %d mesh with %d TRACERS\n",NL,NL,ND,NT);
+  printf("Generating a %d x %d x %d mesh with %d TRACERS\n",NC,NC,NL,NT);
   printf("Writing to file: %s\n",filename);
 
   // Compute various sizes
   int NH = 2;                       // Halo size
-  int N0 = NL;
-  int N2 = NL + NH * 2;
-  int NSLOPEDGES = 2 * NL + 1;      // Slope edges per row
-  int NVERTEDGES = NL + 1;          // Vertical edges per row
-  int LSLOPEDGES = NL + 1;          // Number of slope edge rows
-  int LVERTEDGES = NL;              // Number of vertical edge rows
+  int N0 = NC;
+  int N2 = NC + NH * 2;
+  int NSLOPEDGES = 2 * NC + 1;      // Slope edges per row
+  int NVERTEDGES = NC + 1;          // Vertical edges per row
+  int LSLOPEDGES = NC + 1;          // Number of slope edge rows
+  int LVERTEDGES = NC;              // Number of vertical edge rows
 
 
   // Numbering non-halo cells first and then halo cells line by line
   int **iCell = (int**)malloc(N2 * sizeof(int*));
   for (int i = 0; i < N2; ++i) iCell[i] = (int*)malloc(N2 * sizeof(int));
   int nCell = 1;
-  for (int i=2; i<2+NL; i++) for (int j=2; j<2+NL; j++) iCell[i][j] = nCell++;
+  for (int i=2; i<2+NC; i++) for (int j=2; j<2+NC; j++) iCell[i][j] = nCell++;
   for (int i=0; i<N2; i++) iCell[0][i] = nCell++;
   for (int i=0; i<N2; i++) iCell[1][i] = nCell++;
-  for (int i=2; i<2+NL; i++) {
+  for (int i=2; i<2+NC; i++) {
     iCell[i][0] = nCell++;
     iCell[i][1] = nCell++;
     iCell[i][N2-2] = nCell++;
