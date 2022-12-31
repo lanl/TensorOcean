@@ -1,5 +1,3 @@
-# TensorOcean
-
 TensorOcean
 ========
 
@@ -11,10 +9,12 @@ Implementations
 We have implemented four sub-tasks of MPAS-Ocean's tracer advection routine in PyTorch: (1) computing high-order vertical fluxes, (2) accumulating scaled high-order vertical tendencies, (3) computing high-order horizontal fluxes, and (4) accumulating scaled high-order horizontal tendencies. For (1) and (2), we have one baseline PyTorch implementation retaining the original MPAS-Ocean indexing system. For (3) and (4), we have two PyTorch implementations (i.e., baseline and optimized) that base on different indexing systems.
 To run on different processors, the PyTorch implementations only need to change a few lines of code. We have tested our PyTorch implementations on CPU, GPU, and TPU. Please see the code in the PyTorch folder.
 We also include the original Fortran implementation with both OpenMP and OpenACC for comparison purposes.
+
 Usage
 ------------
 
 The meshgen.c file can generate configurable hexagonal meshes with the format of LENGTHxDEPTHxTRACERS. A single-generated mesh can be used as the input of the original Fortran implementation and the baseline PyTorch implementation. The optimized PyTorch implementation currently uses dimension sizes as the input.
+
 Publications
 --------------------------
 
