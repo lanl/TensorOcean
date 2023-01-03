@@ -19,7 +19,7 @@ Example of running on CPU:
 
 gcc -o meshgen.exe -O2 meshgen.c
 
-meshgen.exe 100 100 1
+./meshgen.exe 100 100 1
 
 python3 baseline_cpu.py 100x100x100_1.dat
 
