@@ -13,9 +13,9 @@ To run on different processors, the PyTorch implementations only need to change 
 Usage
 ------------
 
-The meshgen.c file can generate configurable hexagonal meshes with the format of LENGTHxDEPTHxTRACERS. A single-generated mesh can be used as the input of the original Fortran implementation and the baseline PyTorch implementation. The optimized PyTorch implementation currently uses dimension sizes as the input.
+The meshgen.c file can generate configurable hexagonal meshes with the format of LENGTHxLENGTHxDEPTH_TRACERS. A single-generated mesh can be used as the input of the original Fortran implementation and the baseline PyTorch implementation. The optimized PyTorch implementation currently uses dimension sizes as the input.
 
-Example of running on CPU:
+Example of generating a 100x100x100 mesh with 1 tracer and running it with the baseline PyTorch implementation on CPU:
 
 gcc -o meshgen.exe -O2 meshgen.c
 
