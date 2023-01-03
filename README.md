@@ -16,8 +16,11 @@ Usage
 The meshgen.c file can generate configurable hexagonal meshes with the format of LENGTHxDEPTHxTRACERS. A single-generated mesh can be used as the input of the original Fortran implementation and the baseline PyTorch implementation. The optimized PyTorch implementation currently uses dimension sizes as the input.
 
 Example of running on CPU:
+
 gcc -o meshgen.exe -O2 meshgen.c
+
 meshgen.exe 100 100 1
+
 python3 baseline_cpu.py 100x100x100_1.dat
 
 Publications
