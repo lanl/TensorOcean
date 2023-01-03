@@ -1,19 +1,24 @@
 TensorOcean
 ========
 
-TensorOcean is a part of MPAS-Ocean (LA-CC-13-047) and implements some expensive routines of MPAS-Ocean in PyTorch for research purposes. Our goal is to accelerate MPAS-Ocean by using AI accelerators (e.g., Google's TPU) through efficient transformations from discretized operators in ocean modeling to regular tensor operations in PyTorch.
+TensorOcean is a part of MPAS-Ocean (LA-CC-13-047) and implements some routines of MPAS-Ocean in PyTorch for research purposes. The project goal is to help accelerate MPAS-Ocean by using AI accelerators (e.g., Google's TPU) through efficient transformations from discretized operators in ocean modeling to regular tensor operations in PyTorch.
 
 Implementations
 -----------
 
-We have implemented four sub-tasks of MPAS-Ocean's tracer advection routine in PyTorch: (1) computing high-order vertical fluxes, (2) accumulating scaled high-order vertical tendencies, (3) computing high-order horizontal fluxes, and (4) accumulating scaled high-order horizontal tendencies. For (1) and (2), we have one baseline PyTorch implementation retaining the original MPAS-Ocean indexing system. For (3) and (4), we have two PyTorch implementations (i.e., baseline and optimized) that base on different indexing systems.
-To run on different processors, the PyTorch implementations only need to change a few lines of code. We have tested our PyTorch implementations on CPU, GPU, and TPU. Please see the code in the PyTorch folder.
-We also include the original Fortran implementation with both OpenMP and OpenACC for comparison purposes.
+We have implemented four sub-tasks of MPAS-Ocean's tracer advection routine in PyTorch: (1) computing high-order vertical fluxes, (2) accumulating scaled high-order vertical tendencies, (3) computing high-order horizontal fluxes, and (4) accumulating scaled high-order horizontal tendencies. For (1) and (2), we have one baseline PyTorch implementation retaining the original MPAS-Ocean indexing system. For (3) and (4), we have two PyTorch implementations (i.e., baseline and optimized) that base on different indexing systems. Baseline_xpu.py includes (1)-(4), and optimized_xpu.py includes (3)-(4).
+
+To run on different processors, the PyTorch implementations only need to change a few lines of code. We have tested our PyTorch implementations on CPU, GPU, and TPU. Please see the code in the PyTorch folder. We also include the original Fortran implementation with both OpenMP and OpenACC for comparison purposes.
 
 Usage
 ------------
 
 The meshgen.c file can generate configurable hexagonal meshes with the format of LENGTHxDEPTHxTRACERS. A single-generated mesh can be used as the input of the original Fortran implementation and the baseline PyTorch implementation. The optimized PyTorch implementation currently uses dimension sizes as the input.
+
+Example of running on CPU:
+gcc -o meshgen.exe -O2 meshgen.c
+meshgen.exe 100 100 1
+python3 baseline_cpu.py 100x100x100_1.dat
 
 Publications
 --------------------------
