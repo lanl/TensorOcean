@@ -26,7 +26,7 @@ python3 baseline_cpu.py 100x100x100_1.dat
 Publications
 --------------------------
 
-Li Tang, Philip Jones and Scott Pakin, "Harnessing Extreme Heterogeneity for Ocean Modeling with Tensors," The 2nd International Workshop on Extreme Heterogeneity Solutions (ExHET 2022), (Under review).
+Li Tang, Philip Jones and Scott Pakin, "Harnessing Extreme Heterogeneity for Ocean Modeling with Tensors," The 2nd International Workshop on Extreme Heterogeneity Solutions (ExHET 2023), Montreal, Canada, February 25th, 2023.
 
 Legal statement
 ---------------
