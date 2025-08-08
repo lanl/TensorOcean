@@ -1,0 +1,189 @@
+&task_list
+run_Time_Dependent=.true.
+test_Hamiltonian=.true.
+test_current=.false.
+run_Kubo_Greenwood=.false.
+run_Stopping_Power=.false.
+calc_DOS=.true.
+calculate_current=.true.
+wall_time_hours=4.5
+!initial_orbital_free=.true.
+/
+
+&parallel_groups
+n_spin_groups=1
+n_k_groups= 1
+n_band_groups=1
+by_node=.true.
+/
+
+&system_parameters
+Temperature_eV= 1.0
+Density_gcc= 2.72
+Number_of_elements = 1
+Number_of_KS_orbitals = 24
+Number_of_stoch_vect = 0
+Number_of_buffer_orbitals = 0
+Number_of_smoother_orbitals = 0
+/
+
+&Time_Dependent
+!Use default dt = 0.05 ! 0.010012565149946
+!dt = 0.01  ! To conserve energy
+!dt=0.05
+nt = 20000
+!output_steps=1
+pulse_E0=0.00 0.0 0.0
+pulse_t_max_field=0.0
+pulse_w_field=0.0
+pulse_phase_field=0.0
+BOMD_or_RealTime = 'RealTime'
+Thermostat='IsoEnergy'         !Default='IsoEnergy'
+SIL_rank=10
+pressure_print_mod=100
+energy_print_mod=10
+delta_R=1.0
+/
+
+&Kubo_Greenwood
+delta_eV=0.5
+omega_max_eV=600.0
+dw_eV=0.01
+SIL_rank=10
+PAW_nabla_full=.false.
+/
+
+&Density_of_states
+delta_eV=1
+omega_max_eV=600.0
+dw_eV=0.1
+/
+
+&simulation_grid
+Nx=192
+Ny=192
+Nz=192
+!Nx=96
+!Ny=96
+!Nz=96
+Ecut=750
+!Ecut=300
+!ecutsm=40.8171
+internal_FFT=.false.
+pruned_WF_FFT=.false.
+/
+
+&thomas_fermi
+gamma=1.0
+lambda=1.0
+energy_eps=1.0E-6
+dynamic_kedp=.true.
+/
+
+&xc_functional
+exchange='GGA_X_PBE'
+correlation='GGA_C_PBE'
+/
+
+&element_list
+Number_of_atoms_of_element =  512
+PP_file = 'Al.psp8'
+PP_type = 'ONCV'
+Projector_Application = 'Real_Local'
+!Projector_Application = 'Reciprocal'
+!radius=1.5
+Mass_amu = 26.982
+OH_factor = 1
+frozen_positions=.true.
+thawed_velocities=.true.
+/
+
+&FFT
+FFT_algorithm = 'FFTW'
+/
+
+!&positions
+        0.11498266751E+000        0.16680512915E+000        0.85664761376E+000
+        0.46807021286E+000        0.28668612170E+000        0.10871194591E+000
+        0.47446014063E+000        0.20929216351E+000        0.48746190032E+000
+        0.68404866957E+000        0.41046588690E+000        0.50866912406E+000
+        0.76457319260E+000        0.78748950264E+000        0.20334823247E+000
+        0.98137205269E+000        0.58872289470E+000        0.67259192227E+000
+        0.75738759962E-001        0.80636789404E+000        0.87404162058E+000
+        0.42445047374E+000        0.83481196342E+000        0.49839281633E+000
+        0.71439990861E+000        0.36871965314E+000        0.16142124183E+000
+        0.34382236106E+000        0.42237080806E+000        0.74649021389E+000
+        0.70418150248E+000        0.20782912180E+000        0.84336664571E+000
+        0.55288172662E-001        0.43473308059E+000        0.11789100974E+000
+        0.46446895498E-001        0.23433593338E+000        0.48408566304E+000
+        0.21576652631E+000        0.23024887088E-001        0.17824308243E+000
+        0.32482597572E+000        0.75093507521E+000        0.13545734546E+000
+        0.88299435706E+000        0.90238163374E+000        0.60594190059E+000
+/
+!&velocities
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+/
+
+&td_atom_shifts
+0.01 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+0.0 0.0 0.0
+/
+
+&numerics
+lobpcg_inner_steps=4  ! default well-suited for WDM
+lobpcg_soft_lock_thresh=1.0E-15
+lobpcg_block_per_core=1 ! suggested by Alex on Nov 7 helpful for KS-DFT
+kerker_plasma=.false. ! suggested by Alex on Nov 7 set to true where preconditioner determined by plasma conditions
+pulay_max_iter=100
+pulay_n=40
+pulay_k=50  ! ignored prolly
+pulay_alpha=0.15  ! ignored prolly
+pulay_L2_eps=0.01  ! ignored in favour of pulay_energy_eps: OK for WDM
+pulay_eig_eps=0.01 ! ignored in favour of pulay_energy_eps: OK for WDM
+pulay_energy_eps=1E-6 ! VASP + abinit use 1E-6 however can use 1E-4 here in WDM conditions
+/
